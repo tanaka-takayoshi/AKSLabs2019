@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-app-team
+spec:
+  hard:
+    cpu: "10"
+    memory: 200Mi
+    pods: "10"

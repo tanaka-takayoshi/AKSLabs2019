@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manydiskspod-deployment
+  labels:
+    app: nginx1
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: nginx1
+  template:
+    metadata:
+      labels:
+        app: nginx1
+    spec:
+      containers:
+      - image: nginx:1.15.5
+        name: manydiskspod
+        volumeMounts:
+        - mountPath: "/mnt/azure1"
+          name: volume1
+        - mountPath: "/mnt/azure2"
+          name: volume2
+        - mountPath: "/mnt/azure3"
+          name: volume3
+        - mountPath: "/mnt/azure4"
+          name: volume4
+        - mountPath: "/mnt/azure5"
+          name: volume5
+        - mountPath: "/mnt/azure6"
+          name: volume6
+        - mountPath: "/mnt/azure7"
+          name: volume7
+        - mountPath: "/mnt/azure8"
+          name: volume8
+        - mountPath: "/mnt/azure9"
+          name: volume9
+      volumes:
+        - name: volume1
+          persistentVolumeClaim:
+            claimName: azd1
+        - name: volume2
+          persistentVolumeClaim:
+            claimName: azd2
+        - name: volume3
+          persistentVolumeClaim:
+            claimName: azd3
+        - name: volume4
+          persistentVolumeClaim:
+            claimName: azd4
+        - name: volume5
+          persistentVolumeClaim:
+            claimName: azd5
+        - name: volume6
+          persistentVolumeClaim:
+            claimName: azd6
+        - name: volume7
+          persistentVolumeClaim:
+            claimName: azd7
+        - name: volume8
+          persistentVolumeClaim:
+            claimName: azd8
+        - name: volume9
+          persistentVolumeClaim:
+            claimName: azd9

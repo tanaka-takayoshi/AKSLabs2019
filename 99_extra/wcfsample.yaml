@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wcfsample
+  labels:
+    app: wcfsample
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: wcfsample
+      labels:
+        app: wcfsample
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": windows
+      containers:
+      - name: wcfsample
+        image: mcr.microsoft.com/dotnet/framework/samples:wcfservice
+        resources:
+          limits:
+            cpu: 1
+            memory: 800m
+          requests:
+            cpu: ".1"
+            memory: 300m
+        ports:
+          - containerPort: 808
+          - containerPort: 80
+  selector:
+    matchLabels:
+      app: wcfsample
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wcfsample
+spec:
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 808
+  - protocol: TCP
+    port: 80
+  selector:
+    app: wcfsample

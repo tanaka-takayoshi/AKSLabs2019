@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wcfclient
+spec:
+  template:
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: wcfclient
+        image: docker.io/tanakatakayoshi/wcfclientcore
+        env:
+          - name: HOST
+            value: "23.96.63.58"
+      restartPolicy: Never
+  backoffLimit: 4

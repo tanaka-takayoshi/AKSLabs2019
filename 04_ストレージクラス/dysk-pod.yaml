@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mypod6-deployment
+  labels:
+    app: nginx6
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: nginx6
+  template:
+    metadata:
+      labels:
+        app: nginx6
+    spec:
+      containers:
+      - name: nginx-flex-blobfuse
+        image: nginx
+        volumeMounts:
+        - name: test
+          mountPath: /mnt/azure
+      volumes:
+      - name: test
+        flexVolume:
+          driver: "azure/dysk"
+          readOnly: false
+          fsType: ext4
+          secretRef:
+            name: dyskcreds
+          options:
+            container: dyskstorage
+            blob: test.vhd

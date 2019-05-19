@@ -1,0 +1,9 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mypod2
+  namespace: pod-resource
+spec:
+  containers:
+  - name: mypod2
+    image: nginx:1.15.5

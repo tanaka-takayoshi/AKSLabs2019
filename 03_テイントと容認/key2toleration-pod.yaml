@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mypod3-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 8
+  selector: 
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx:1.15.5
+        name: mypod3
+      tolerations:
+      - key: "key2"
+        operator: "Equal"
+        value: "value2"
+        effect: "NoSchedule"

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mypod5-deployment
+  labels:
+    app: nginx5
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: nginx5
+  template:
+    metadata:
+      labels:
+        app: nginx5
+    spec:
+      containers:
+      - name: nginx-flex-blobfuse
+        image: nginx
+        volumeMounts:
+        - name: test
+          mountPath: /mnt/azure
+      volumes:
+      - name: test
+        flexVolume:
+          driver: "azure/blobfuse"
+          readOnly: false
+          secretRef:
+            name: blobfusecreds
+          options:
+            container: flexstorage
+            tmppath: /tmp/blobfuse
+            mountoptions: "--file-cache-timeout-in-seconds=120"

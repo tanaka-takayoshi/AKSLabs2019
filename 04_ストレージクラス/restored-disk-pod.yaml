@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mypod4-deployment
+  labels:
+    app: nginx4
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: nginx4
+  template:
+    metadata:
+      labels:
+        app: nginx4
+    spec:
+      containers:
+      - image: nginx:1.15.5
+        name: mypod4
+        volumeMounts:
+        - mountPath: "/mnt/azure"
+          name: volume
+      volumes:
+        - name: volume
+          azureDisk:
+            kind: Managed
+            diskName: pvcRestored
+            diskURI: /subscriptions/<subscriptionId>/resourceGroups/MC_decodeaksdemo_decode2019cluster_westus2/providers/Microsoft.Compute/disks/pvcRestored
