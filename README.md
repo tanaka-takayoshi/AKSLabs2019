@@ -17,7 +17,7 @@
 - [ポッドのリソースの要求と制限](./02_ポッドのリソースの要求と制限)
 - [テイントと容認](./03_テイントと容認)
 - [ストレージクラスによるAzure DiskとAzure Fileの利用](./04_ストレージクラス)
- - プレビュー機能であるDyskとblobfuseの利用も含みます
+  - プレビュー機能であるDyskとblobfuseの利用も含みます
 - [（プレビュー）Cosmos etcd API](./99_extra/CosmosEtcd.md)
 - [（プレビュー）Windows Server Node in AKS](./99_extra/Winsvrnode.md)
 
